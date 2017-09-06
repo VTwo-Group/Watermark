@@ -199,9 +199,16 @@ class Watermark {
 
 		# Get function name to use for save image
 		$functionTarget = $this->getFunction($imgTarget, 'save');
+        
+        //Quality number
+        if($functionTarget=='imagejpeg') {
+            $quality = 100;
+        } else {
+            $quality = 0;
+        }
 
 		# Save image
-		$functionTarget($this->imgSource, $imgTarget, 100);
+		$functionTarget($this->imgSource, $imgTarget, $quality);
 
 		# Destroy temp images
 		imagedestroy($this->imgSource);
